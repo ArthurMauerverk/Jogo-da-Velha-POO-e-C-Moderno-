@@ -5,7 +5,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
-
+#include <algorithm>
 Persistencia::Persistencia(const std::string& tabuleiro, 
                            const std::string& ranking,
                            const std::string& tipoJogadores)
@@ -183,16 +183,12 @@ void Persistencia::salvarPontuacao(const std::vector<std::unique_ptr<Jogador>>& 
         }
     }
     
-    // Ordenar ranking (maior pontuação primeiro) - método bolha simples
-    for (size_t i = 0; i < ranking.size(); i++) {
-        for (size_t j = i + 1; j < ranking.size(); j++) {
-            if (ranking[j].pontuacao > ranking[i].pontuacao) {
-                JogadorRanking temp = ranking[i];
-                ranking[i] = ranking[j];
-                ranking[j] = temp;
-            }
+    //metodo sort para ordenar ranking
+    std::sort(ranking.begin(), ranking.end(), 
+    [](const JogadorRanking& a, const JogadorRanking& b) {
+        return a.pontuacao > b.pontuacao;  // > para ordem decrescente
         }
-    }
+    );    
     
     // Salvar ranking atualizado no arquivo ranking.txt
     std::ofstream arqRankingOut(arquivoRanking);
