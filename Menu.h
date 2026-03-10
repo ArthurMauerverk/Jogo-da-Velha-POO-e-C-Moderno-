@@ -14,7 +14,6 @@ private:
     void exibirOpcoes();
     void processarOpcao(int opcao);
     
-    // Métodos para cada opção do menu
     void iniciarNovoJogo();
     void escolherQuemInicia();
     void escolherModoJogo();
@@ -23,7 +22,7 @@ private:
 
 public:
     Menu();
-    void executar();  // Loop principal do menu
+    void executar();
 };
 
 #endif

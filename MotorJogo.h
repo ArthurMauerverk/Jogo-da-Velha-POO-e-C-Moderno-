@@ -4,28 +4,29 @@
 #include <memory>
 #include <vector>
 #include "Tabuleiro.h"
-#include "Jogador.h" 
+#include "Jogador.h"
 
 class MotorJogo {
 private:
     Tabuleiro tabuleiro;
-    std::vector<std::unique_ptr<Jogador>> jogadores;  // Array de ponteiros inteligentes
+    std::vector<std::unique_ptr<Jogador>> jogadores;
     int jogadorAtual;
     bool jogoAtivo;
     int modoJogo;
+    int nivelBot;
 
 public:
     MotorJogo();
     
-    // Métodos principais do motor
-    void iniciarPartida(int modo, bool humanoInicia = true);
+    // Método atualizado para receber o nível
+    void iniciarPartida(int modo, bool humanoInicia = true, int nivel = 2);
     void alternarTurno();
     void executarTurno();
     bool verificarFimDeJogo();
     void exibirResultado() const;
     void reset();
     
-    // Getters/Setters para persistência (usados pelo Menu/Persistência)
+    // Getters/Setters
     const Tabuleiro& getTabuleiro() const { return tabuleiro; }
     void setTabuleiro(const Tabuleiro& tab) { tabuleiro = tab; }
     
